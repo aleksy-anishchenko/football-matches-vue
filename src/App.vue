@@ -1,28 +1,23 @@
 <template>
   <div class="container">
     <h1 class="title">Football Scores</h1>
-    <div v-if="footballMatches.competition" class="competition__header">
-      <img
-          src="https://crests.football-data.org/CL.png"
-          width="75" height="75"
-          alt="Логотип чемпионата"
-      />
-      <h2>{{ footballMatches.competition.name }}</h2>
-    </div>
-    <MatchList :matches="footballMatches.matches" />
+    <Competition />
+    <MatchList />
   </div>
 </template>
 
 <script setup>
 import { onMounted } from "vue";
-import { useFootballMatches } from "@/useFootballMatches.js";
+import { useCompetitionData } from '@/useCompetitionData.js'
 import MatchList from "@/components/MatchList.vue";
+import Competition from "@/components/Competition.vue";
 
-const { footballMatches, getFootballMatches } = useFootballMatches();
+const { fetchCompetitionData } = useCompetitionData();
 
 onMounted(() => {
-  getFootballMatches();
-})
+  fetchCompetitionData();
+});
+
 </script>
 
 <style>
@@ -40,12 +35,5 @@ onMounted(() => {
 .container {
   max-width: 800px;
   margin: 0 auto;
-}
-
-.competition__header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
 }
 </style>

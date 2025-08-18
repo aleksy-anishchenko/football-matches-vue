@@ -1,15 +1,14 @@
 <template>
   <div class="match-list">
-    <MatchItem v-for="match in matches" :key="match.id" :match="match" />
+    <MatchItem v-for="match in store.matches" :key="match.id" :match="match" />
   </div>
 </template>
 
 <script setup>
 import MatchItem from "@/components/MatchItem.vue";
+import { useCompetitionStore } from "@/competitionStore.js";
+const store = useCompetitionStore()
 
-defineProps({
-  matches: Array,
-})
 </script>
 
 <style scoped>
