@@ -1,13 +1,15 @@
 <template>
-  <div class="match">
-    <div class="match__meta">
-      <div class="match__time">19:00</div>
-      <div class="match__status">Завершен</div>
+  <router-link :to="{ name: 'match', params: { id: match.id } }">
+    <div class="match">
+      <div class="match__meta">
+        <div class="match__time">19:00</div>
+        <div class="match__status">Завершен</div>
+      </div>
+      <TeamItem :team="match.homeTeam" :key="match.homeTeam.id" side="left"/>
+      <MatchScore :score="match.score" />
+      <TeamItem :team="match.awayTeam" :key="match.awayTeam.id" side="right"/>
     </div>
-    <TeamItem :team="match.homeTeam" :key="match.homeTeam.id" side="left"/>
-    <MatchScore :score="match.score" />
-    <TeamItem :team="match.awayTeam" :key="match.awayTeam.id" side="right"/>
-  </div>
+  </router-link>
 </template>
 
 <script setup>
